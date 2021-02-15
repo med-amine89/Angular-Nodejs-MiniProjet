@@ -1,0 +1,47 @@
+<div class="row pt-5">
+    <div class="col-md-6 mx-auto">
+        <div class="card rounded-0">
+            <div class="card-header">
+                <h3 class="mb-0">Login</h3>
+            </div>
+            <div class="card-body">
+                <form class="form" [formGroup]="registrationForm" (ngSubmit)="loginUser()">
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input [ngClass]="{'is-invalid': submited && registrationForm.get('email').errors, 
+                        'is-valid': submited && !registrationForm.get('email').errors}" type="text"
+                            class="form-control rounded-0" formControlName="email">
+                        <div *ngIf="registrationForm.get('email').invalid && registrationForm.get('email').touched">
+                            <small *ngIf="registrationForm.get('email').errors?.required" class="text-danger">Email is
+                                required</small>
+                            <small *ngIf="registrationForm.get('email').errors?.pattern" class="text-danger">Email must
+                                be
+                                xxxx.xxxx@gmail.com</small>
+                        </div>
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input [ngClass]="{'is-invalid': submited && registrationForm.get('password').errors, 
+                        'is-valid': submited && !registrationForm.get('password').errors}" type="password"
+                            class="form-control" formControlName="password">
+                        <div
+                            *ngIf="registrationForm.get('password').invalid && registrationForm.get('password').touched">
+                            <small *ngIf="registrationForm.get('password').errors.required" class="text-danger">Password
+                                is
+                                required</small>
+                            <small *ngIf="registrationForm.get('password').errors.pattern" class="text-danger">Password
+                                must be
+                                eight and different caracters</small>
+                        </div>
+                    </div>
+                    <button [disabled]="registrationForm.invalid" type="submit"
+                        class="btn btn-success float-right mt-2">Sign in</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
