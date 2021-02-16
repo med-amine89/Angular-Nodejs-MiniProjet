@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,8 @@ export class UserService {
   users: any[];
   readonly baseURL = 'http://localhost:3000/users';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private router: Router) { }
 
   postUser(use: any) {
     return this.http.post(this.baseURL, use);
@@ -46,10 +47,11 @@ export class UserService {
 
     });
   }
+
+  // SECURITE DES ROUTES AVEC AUTH GUARD
   loggedIn() {
     return !!localStorage.getItem('token')
   }
-
 
   // authorization user token with Bearer
   getToken() {

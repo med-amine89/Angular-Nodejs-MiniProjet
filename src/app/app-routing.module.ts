@@ -7,7 +7,7 @@ import { P404Component } from './p404/p404.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {AcceuilComponent} from './acceuil/acceuil.component';
 import { AboutComponent } from './about/about.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
@@ -22,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: 'acceuil',
-    component: AcceuilComponent
+    component: AcceuilComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'register',
@@ -30,7 +31,8 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

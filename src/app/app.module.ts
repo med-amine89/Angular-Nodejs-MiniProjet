@@ -14,9 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './shared/user.service';
 import { AcceuilComponent } from './acceuil/acceuil.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
 import { InterceptorService } from './interceptor.service';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,6 @@ import { InterceptorService } from './interceptor.service';
     RegisterComponent,
     P404Component,
     AcceuilComponent,
-    DashboardComponent,
     AboutComponent
   ],
   imports: [
@@ -41,7 +40,7 @@ import { InterceptorService } from './interceptor.service';
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptorService,
     multi: true
-  }],
+  }, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -50,7 +50,8 @@ export class AcceuilComponent implements OnInit {
   // send user to db
   onSubmit() {
     this.userservice.updateUser(this.id,this.registrationForm.value).subscribe((res) => {
-      this.resetForm();
+      // this.resetForm();
+      console.log(this.registrationForm);
     });
   }
   // get all users dans un tableau pour supprimer ou editer
@@ -70,7 +71,7 @@ export class AcceuilComponent implements OnInit {
 
   // update user in db and tableau
   onEdit(_id: String) {
-    // this.id= _id;
+    this.id= _id;
     this.userservice.getUser(_id).subscribe((use) => {
       this.registrationForm.patchValue(use);
     });
